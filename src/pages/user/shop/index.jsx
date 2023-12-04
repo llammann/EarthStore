@@ -16,7 +16,12 @@ import {
 import Icon, { SearchOutlined } from "@ant-design/icons";
 
 function Shop() {
-  const [value1, setValue1] = React.useState([20, 37]);
+  const [priceRange, setPriceRange] = React.useState([10, 30]);
+
+  const handlePriceChange = (event, newValue) => {
+    setPriceRange(newValue);
+  };
+
   return (
     <>
       <section className="shop">
@@ -38,22 +43,15 @@ function Shop() {
               <h3>Filter by Price</h3>
 
               <Slider
-  getAriaLabel={() => 'Minimum distance'}
-  value={value1}
-  onChange={handleChange1}
-  valueLabelDisplay="auto"
-  getAriaValueText={valuetext}
-  disableSwap
-/>
-<Slider
-  getAriaLabel={() => 'Minimum distance shift'}
-  value={value2}
-  onChange={handleChange2}
-  valueLabelDisplay="auto"
-  getAriaValueText={valuetext}
-  disableSwap
-/>
-              
+                getAriaLabel={() => "Price range"}
+                value={priceRange}
+                onChange={handlePriceChange}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `$${value}`}
+                min={10}
+                max={30}
+              />
+
               <div className="minMax">
                 <span>$10</span>
                 <span>$30</span>
